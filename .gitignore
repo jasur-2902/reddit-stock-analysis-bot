@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Dependencies in package (keep only source files)
+package/*.so
+package/*.dist-info/
+package/bin/
+package/boto3/
+package/botocore/
+package/certifi/
+package/cffi/
+package/charset_normalizer/
+package/cryptography/
+package/dateutil/
+package/google/
+package/google_*/
+package/googleapis*/
+package/googleapiclient/
+package/h11/
+package/httpcore/
+package/httplib2/
+package/httpx/
+package/idna/
+package/jmespath/
+package/pyasn1*/
+package/pycparser/
+package/pydantic*/
+package/pyparsing/
+package/python_dateutil*/
+package/requests/
+package/rsa/
+package/s3transfer/
+package/six*
+package/tqdm/
+package/typing_*/
+package/uritemplate/
+package/urllib3/
+package/annotated_types/
+package/anyio/
+package/apiclient/
+
+# Zip files
+*.zip
+
+# IDE
+.claude/
+.vscode/
+.idea/
+
+# Test directories
+test_lambda/
+test_lambda_pkg/
+test_pkg/
