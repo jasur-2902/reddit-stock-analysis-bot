@@ -30,7 +30,7 @@ This project monitors popular financial subreddits (r/stocks, r/wallstreetbets, 
 - **Strategy Generation**: Aggregates signals into actionable BUY/SELL/HOLD recommendations
 - **Daily Email Reports**: Beautiful HTML email delivered at 8:30 AM EST
 - **Cloudflare Bypass**: Uses residential proxies to avoid rate limiting
-- **Serverless Architecture**: Runs entirely on AWS Lambda (cost: ~$1/day)
+- **Serverless Architecture**: Runs entirely on AWS Lambda (cost: ~$0.58/day)
 
 ## Architecture
 
@@ -168,15 +168,15 @@ STEP 3: ANALYZE & EMAIL (8:30 AM EST)
 
 ## Cost Breakdown
 
-Running this pipeline daily costs approximately **$1.04/day** (~$31/month):
+Running this pipeline daily costs approximately **$0.58/day** (~$17/month):
 
 | Component | Daily Cost | Monthly Cost | Notes |
 |-----------|-----------|--------------|-------|
 | AWS Lambda | $0.11 | $3.30 | ~10 min total execution |
-| DynamoDB | $0.09 | $2.70 | On-demand, ~4000 writes/day |
+| DynamoDB | $0.06 | $1.80 | On-demand, ~2500 writes/day |
 | Decodo Proxy | $0.12 | $3.68 | Pay-as-you-go $3.50/GB, ~35 MB/day |
-| Gemini API | $0.72 | $21.60 | ~500K tokens/day |
-| **Total** | **$1.04** | **$31.28** | |
+| Gemini API | $0.29 | $8.70 | ~200K tokens/day |
+| **Total** | **$0.58** | **$17.48** | |
 
 ## Project Structure
 
