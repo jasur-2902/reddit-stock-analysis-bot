@@ -168,15 +168,15 @@ STEP 3: ANALYZE & EMAIL (8:30 AM EST)
 
 ## Cost Breakdown
 
-Running this pipeline daily costs approximately **$3-4/day** (~$100/month):
+Running this pipeline daily costs approximately **$3.86/day** (~$116/month):
 
 | Component | Daily Cost | Monthly Cost | Notes |
 |-----------|-----------|--------------|-------|
 | AWS Lambda | $0.11 | $3.30 | ~10 min total execution |
 | DynamoDB | $0.09 | $2.70 | On-demand, ~4000 writes/day |
-| Decodo Proxy | $2.69 | $80.00 | Business plan, ~0.8 GB/day |
+| Decodo Proxy | $2.94 | $88.20 | Pay-as-you-go $3.50/GB, ~0.84 GB/day |
 | Gemini API | $0.72 | $21.60 | ~500K tokens/day |
-| **Total** | **$3.61** | **$107.60** | |
+| **Total** | **$3.86** | **$115.80** | |
 
 ## Project Structure
 
