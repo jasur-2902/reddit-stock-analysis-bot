@@ -335,12 +335,11 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    # Local testing
-    os.environ['PROXY_HOST'] = 'gate.decodo.com'
-    os.environ['PROXY_PORT'] = '7000'
-    os.environ['PROXY_USER'] = '${PROXY_USER}'
-    os.environ['PROXY_PASS'] = '${PROXY_PASS}'
-    os.environ['AWS_REGION'] = 'us-east-1'
+    # Local testing - set these environment variables before running:
+    # PROXY_HOST, PROXY_PORT, PROXY_USER, PROXY_PASS, AWS_REGION
+    if not os.getenv('PROXY_USER') or not os.getenv('PROXY_PASS'):
+        print("Error: Set PROXY_USER and PROXY_PASS environment variables")
+        exit(1)
 
     result = lambda_handler({}, None)
     print(json.dumps(json.loads(result['body']), indent=2))

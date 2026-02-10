@@ -15,11 +15,14 @@ import requests
 import concurrent.futures
 from urllib.parse import quote
 
-# Load proxy credentials from environment or use defaults
+# Load proxy credentials from environment (required)
 PROXY_HOST = os.getenv('PROXY_HOST', 'gate.decodo.com')
 PROXY_PORT = os.getenv('PROXY_PORT', '7000')
-PROXY_USER = os.getenv('PROXY_USER', '${PROXY_USER}')
-PROXY_PASS = os.getenv('PROXY_PASS', '${PROXY_PASS}')
+PROXY_USER = os.getenv('PROXY_USER')
+PROXY_PASS = os.getenv('PROXY_PASS')
+
+if not PROXY_USER or not PROXY_PASS:
+    raise ValueError("PROXY_USER and PROXY_PASS environment variables are required")
 
 # Test URLs - a few recent posts with comments
 TEST_URLS = [
