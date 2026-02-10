@@ -1886,19 +1886,30 @@ class SentimentAnalyzer:
         self.results_table = self.dynamodb.Table(self.results_table_name)
 
     def scan_clean_posts(self) -> List[Dict]:
-        """Scan for clean, unprocessed posts."""
+        """Scan for clean, unprocessed posts with pagination."""
+        posts = []
         try:
             filter_expression = (
                 Attr('is_clean').eq(True) &
                 (Attr('processed').eq(False) | Attr('processed').not_exists())
             )
 
-            response = self.posts_table.scan(
-                FilterExpression=filter_expression,
-                Limit=self.batch_size
-            )
+            # Paginate through all results until we have enough
+            last_key = None
+            while len(posts) < self.batch_size:
+                scan_kwargs = {'FilterExpression': filter_expression}
+                if last_key:
+                    scan_kwargs['ExclusiveStartKey'] = last_key
 
-            posts = response.get('Items', [])
+                response = self.posts_table.scan(**scan_kwargs)
+                posts.extend(response.get('Items', []))
+
+                last_key = response.get('LastEvaluatedKey')
+                if not last_key:
+                    break  # No more items
+
+            # Trim to batch_size
+            posts = posts[:self.batch_size]
             logger.info(f"Found {len(posts)} clean posts to analyze")
             return posts
 
